@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &171618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 461324}
+  - 114: {fileID: 11476988}
+  - 114: {fileID: 11476298}
+  m_Layer: 0
+  m_Name: MemoryObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &461324
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 223.785522, y: 456.866669, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11476298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc05c358c76fdb4abf143a756c3de56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: {fileID: 8300000, guid: c88fca6ed2cefa043b40f1ceb7b463b1, type: 3}
+  cursor: {fileID: 8300000, guid: 8f89aca832109b344b1b316f135be5a8, type: 3}
+  cursor2: {fileID: 8300000, guid: 780079990cc142641abde531faa68ec6, type: 3}
+  decision: {fileID: 8300000, guid: 6b3260334982e8f4bbc071e17900af8f, type: 3}
+  bomb: {fileID: 8300000, guid: 2abf6fb6563dcfd41b05e72430510001, type: 3}
+  shine: {fileID: 8300000, guid: b1e92da3fcc39fa4b856a55ed667026e, type: 3}
+  union: {fileID: 8300000, guid: 4487f9e11020cc14ca595358d68f9dae, type: 3}
+  select: {fileID: 8300000, guid: ff8e4762640cd13408634b74206cb1e9, type: 3}
+  cancel: {fileID: 8300000, guid: efdae9db9c1477742bf0d42ed61e6ec0, type: 3}
+  error: {fileID: 8300000, guid: 436af7c7e41f22d4b8b0f8740992d21c, type: 3}
+  shutter: {fileID: 8300000, guid: c2a1a6897378f8c4383539a216f65f48, type: 3}
+  cleared: {fileID: 8300000, guid: 1e31c57409fe81947b7eb2429f8d344f, type: 3}
+  hanabi: {fileID: 8300000, guid: 2ac8c28cdc3606e4a89f212e91849446, type: 3}
+  gameover: {fileID: 8300000, guid: a7d8ff8ed72c8324fad05db203b04372, type: 3}
+  jihou: {fileID: 8300000, guid: cbfe0451a85e1204db4fb268bd796f0b, type: 3}
+--- !u!114 &11476988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b84417aaf6931e54fad9796589066040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 171618}
+  m_IsPrefabParent: 1

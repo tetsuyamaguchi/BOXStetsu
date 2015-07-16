@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 412c5322a6a02f940a467027fd6d9983
+timeCreated: 1436861893
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - HitEffect: {fileID: 149412, guid: e134776b5be1c274cacd7384dd6b7f33, type: 2}
+  - brokenCubeB: {fileID: 194742, guid: faf4277c1ab1e73479202e18858ab81a, type: 2}
+  - brokenCubeL: {fileID: 135700, guid: 8f9b57bb595cfe04e87aae1be1cdc6a2, type: 2}
+  - brokenCubeN: {fileID: 116124, guid: 922953da668f05f45bc98dc336fd11a9, type: 2}
+  - brokenCubeR: {fileID: 175580, guid: 97bc94dfacf6d6f4e8606318ab3b686a, type: 2}
+  - brokenCubeS: {fileID: 164252, guid: a80bd600fd53bf14f999e9873fe5fa27, type: 2}
+  - goalEffect: {fileID: 166588, guid: 2a2bea66b10fb3642a92e04365e1d185, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
