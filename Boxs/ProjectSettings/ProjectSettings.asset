@@ -10,7 +10,7 @@ PlayerSettings:
   targetResolution: 0
   accelerometerFrequency: 60
   companyName: julymber
-  productName: Boxs07151130
+  productName: Boxs07170100
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
@@ -71,7 +71,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: neko.Tetsu.test005
+  bundleIdentifier: neko.Tetsu.test006
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
@@ -80,7 +80,7 @@ PlayerSettings:
   virtualRealitySupported: 0
   productGUID: eb6988c8a51e0b144a4a80d8c080401e
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 16
+  AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   apiCompatibilityLevel: 2

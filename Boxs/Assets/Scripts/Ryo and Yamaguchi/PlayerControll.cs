@@ -266,15 +266,10 @@ public class PlayerControll : MonoBehaviour
 	//********************************************* 0620 yamaguchi start
 	public void fNextMove()
 	{
-		print ("どうなってんだ");
-
 		if (isCancelfNext == true) {
-			print ("そうぢてだあああ");
-
 			StartCoroutine("fLoopfNext");
 			return;
 		}
-		print ("どうなってんだ２");
 		//-------------------------------------------------igarashi add
 		//初期化
 		isSelectButt = false;
@@ -286,11 +281,9 @@ public class PlayerControll : MonoBehaviour
 		//*************************************************** 0630 yamaguchi dash start
 		//print ("dashFlg check" + dashFlg);
 		if (dashFlg == 1) {
-			print ("どうなってんだ３");
 			this.speed *= 3;
 			dashFlg = 2;
 		} else if (dashFlg == 0) {
-			print ("どうなってんだ４");
 			this.speed = speed0;
 		}
 		
@@ -366,7 +359,7 @@ public class PlayerControll : MonoBehaviour
 			StartCoroutine ("fWalkPlayer");
 		}
 		
-	}
+	}																	//fNextMove() finish
 	
 	
 	//********************************************* 0620 yamaguchi finish
@@ -404,7 +397,7 @@ public class PlayerControll : MonoBehaviour
 		//print ("fWalkPlayer2" + transform.position.z);
 		fNextMove ();
 		
-	}
+	}																	//fWalkPlayer() finish
 	//********************************************* 0620 yamaguchi start
 	//RightTurn Player
 	//*******************************************************************
@@ -897,7 +890,7 @@ public class PlayerControll : MonoBehaviour
 					isSelectDown = true;
 					
 					//*************************************************************0710 001 yamaguchi start
-					
+					print ("isSelectDown");
 					if(floorFlg == NONE){
 						StartCoroutine("fFallPlayer");
 						
@@ -930,6 +923,15 @@ public class PlayerControll : MonoBehaviour
 					backMove = true;
 					
 					isSelectDown = true;
+
+					//*************************************************************0710 001 yamaguchi start
+					
+					if(floorFlg == NONE){
+						StartCoroutine("fFallPlayer");
+						
+					}
+					//*************************************************************0710 yamaguchi end
+
 				}
 				else if (objectC.GetComponent<RollArrow>().IsGround == false)
 				{
@@ -957,6 +959,16 @@ public class PlayerControll : MonoBehaviour
 					backMove = true;
 					
 					isSelectDown = true;
+
+					//*************************************************************0710 001 yamaguchi start
+					
+					if(floorFlg == NONE){
+						StartCoroutine("fFallPlayer");
+						
+					}
+					//*************************************************************0710 yamaguchi end
+
+
 				}	
 				else if (objectC.GetComponent<RollArrow>().IsGround == false)
 				{
@@ -985,6 +997,17 @@ public class PlayerControll : MonoBehaviour
 					backMove = true;
 					
 					isSelectDown = true;
+
+					//*************************************************************0710 001 yamaguchi start
+					
+					if(floorFlg == NONE){
+						StartCoroutine("fFallPlayer");
+						
+					}
+					//*************************************************************0710 yamaguchi end
+
+
+
 				}
 				else if (objectC.GetComponent<RollArrow>().IsGround == false)
 				{

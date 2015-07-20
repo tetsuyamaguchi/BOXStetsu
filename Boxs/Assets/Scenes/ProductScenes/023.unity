@@ -17718,7 +17718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeSpling: 0
   cubeLeft: 0
-  cubeStraight: 1
+  cubeStraight: 0
   cubeRight: 0
   cubeBomb: 20
 --- !u!114 &891519783

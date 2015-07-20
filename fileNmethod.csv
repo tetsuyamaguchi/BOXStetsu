@@ -1,0 +1,278 @@
+,,,,,,"method",,"内容"
+"public/private","static","型","名前",,,"Awake",,"PlayerControlが場に出た際に一度だけ呼ばれる"
+,,"bool","isSelectButt",,,,"goalEffect.SetAction(false)","ゴール時のエフェクト用オブジェクトをOFF"
+,,"bool","isSelectDown",,,,"anim=GetComponent<Animator>()","Playerのanimationを指示するために変数へ格納"
+,,"bool","isMoveYaxis",,,,"anim.SetTrigger(“isMoveTrigger”)","まずはplayerを歩かせる"
+,,"bool","isCancelfNext",,,,"downFlg=BLOCK","とりあえず初期化。これ最初の定義のトコでいいのでは？"
+"public",,"GameObject","HitEffect",,,,"direction=”North”","進行方向を指定。flgと同じように数値管理のほうが間違い少ないのでは？俺（山口）の設計じゃないから容易に変えられず"
+"public",,"GameObject","brokenCubeB",,,,"isGoAhead=true",
+,,,"brokenCubeL",,,"Start",,"PlayerControlが場に出た際に一度だけ呼ばれる。Awakeと分けてあるのはなぜ？"
+,,,"brokenCubeN",,,,"speed0=speed","dashから戻るときのため、初期速度を保存"
+,,,"brokenCubeR",,,,"circleObj=GameObject.Find(“CircleGageDummy”)","タイマー周りの丸いメーターを取得"
+,,,"brokenCubeS",,,,"radicaltimer=circleObj.GetCompornent<RadialTimerScript>()","CircleObjにあるscriptからmethod呼び出すために取得"
+,"const","int","NONE",0,,,"subCamera=GameObject.Find(“SubCamera”)","ゴール時に切り替えるカメラを取得"
+,,"int","BLOCK",1,,,"playerCamera=subCamera.GetComponent<PlayerCamera>()","SubCameraにあるscriptからmethodを呼び出すために取得"
+,,"int","GOAL",2,,,"StartCoroutine(“fStart”)","Fstartを呼ぶ"
+,,"int","RIGHT",3,,,,
+,,"int","LEFT",4,,"fStartButton",,
+,,"int","LOWBLOCK",5,,,"startFlg=1","startFlgを1(ON)にする"
+,,"int","SPLING",6,,,,
+,,"int","CHECKOUT",7,,"setDashFlgOn",,
+"public",,"float","speed",,,,"DashFlg=1","dashFlgを1(ON)にする"
+"public",,"int","flontFlg",,,,"anim.SetBool(“isRun”,true)","アニメーションを走るへ変更"
+"public",,"int","downFlg",,,,,
+"public",,"int","upFlg","NONE",,"setDashFlgOFF",,
+"public",,"int","floorFlg","BLOCK",,,"DashFlg=0","dashFlgを0(OFF)にする"
+,,"int","cnt",,,,"anim.SetBool(“isRun”,false)","アニメーションを走るから戻す"
+,,"Animator","anim",,,,,
+,,"bool","isGoAhead",,,"fStart",,
+,,"string","direction",,,,"GetComponent<Animator> ().SetBool (""isMove"", true)","anim.SetBoolのほうがいいのでは？"
+"private",,"GameObject","cdCanvas",,,,"cdCanvas = GameObject.Find (""CountDownText"")",
+"private",,"Text","cdText",,,,"cdText = cdCanvas.GetComponent<Text>()",
+"public",,"int","startFlg",,,"■　","for (int i = 0 i < cnt i++) {",
+"private",,"int","dashFlg",0,,,"cdText.text = (cnt - i - 1).ToString()","カウントダウン用文字列。cnt-1から1秒づつ減算"
+"private",,"float","speed0",,,"▲","if ((cnt - i - 1) == 3) {",
+"private",,"int","testCnt",0,,,"Sounds.SEjihou()","残り3秒になったらSounds.SEjihou()を呼ぶ"
+"private",,"GameObject","startcube",,,"▼","}",
+"private",,"startCubeAnim","startcubeanim",,,"▲","if(startFlg == 1){",
+"private",,"GameObject","startbtnObj",,,,"break","startFlgが1(ON)になったらfor文を抜ける"
+"private",,"StartBtn","startbtn",,,,"}else{",
+"private",,"GameObject","circleObj",,,,"yield return new WaitForSeconds (1.0f)","1秒待つ"
+"private",,"RadialTimerScript","radicaltimer",,,"▼","}",
+"private",,"GameObject","subCamera",,,"■　","}",
+"private",,"PlayerCamera","playerCamera",,,,"fSendCountStart ()","fSendCountStart()を呼ぶ"
+"private",,"Score","scored",,,,"cdText.text = ""GO""","カウントダウンをGOへ変更"
+"public","static","bool","isClearedScore",FALSE,,,"startcube = GameObject.Find (""StartCube"")","Playerのスタート時に乗っているBlockを取得。FindよりplayerのgoalSensorから取得したほうが負荷が低いのでは？"
+"public",,"GameObject","methoName","aho",,,"startcubeanim = startcube.GetComponent<startCubeAnim> ()","スタート時乗っているBlockの緑に変化するアニメーション指示用"
+,,,,,,,"startcubeanim.fChangeGreen ()","緑へ変化させる"
+,,,,,,,"startbtnObj = GameObject.Find (""ButtonStart"")","ButtonStartを取得"
+,,,,,,"▲","if (startbtnObj != null) {","取得できたら"
+,,,,,,,"startbtn = startbtnObj.GetComponent<StartBtn> ()","startbtnにstartBtn（script）を格納"
+,,,,,,,"startbtn.fStartBtnOff ()","FstartBtnOffを呼ぶ"
+,,,,,,"▼","}",
+,,,,,,,"fNextMove ()","fNextMove ()を呼ぶ"
+,,,,,,,,
+,,,,,,"fLoopfNext",,"fNextMove()を動作させたくない場合に待機させるためのメソッド？"
+,,,,,,,"fNextMove()","0.01f待ってからfNextを呼ぶ"
+,,,,,,,,
+,,,,,,"ｆNextMove",,
+,,,,,,"▲","if (isCancelfNext == true) {","もしisCancelfNextがtrueなら"
+,,,,,,,"StartCoroutine(""fLoopfNext"")","fLoopfNext()を呼んで"
+,,,,,,,"return","fNextMove()を抜ける"
+,,,,,,"▼","}",
+,,,,,,,"isSelectButt = false","落下ブロックとの衝突判定（ヘッドバット）の初期化"
+,,,,,,,"isSelectDown = false","落下ブロックとの衝突判定（倒れ）の初期化"
+,,,,,,,"isMoveYaxis = false","落下ブロックとの衝突判定（上下移動中）の初期化"
+,,,,,,"▲","if (dashFlg == 1) {","dashFlgが1(ON)なら"
+,,,,,,,"this.speed *= 3","Playerの移動速度を3倍にして"
+,,,,,,,"dashFlg = 2","dashFlgを2(ONのまま)にする"
+,,,,,,"―","} else if (dashFlg == 0) {","もしdashFlgが0(OFF)なら"
+,,,,,,,"this.speed = speed0","Playerの移動速度を初期値に戻す"
+,,,,,,"▼","}",
+,,,,,,"▲","if (floorFlg == GOAL) {","Playerの真下のブロックのtagがgoalなら"
+,,,,,,,"StartCoroutine (""fGoalPlayer"")","fGoalPlayer()を呼ぶ"
+,,,,,,,"radicaltimer.fStopCount()","radicaltimer.fStopCount()を呼ぶ"
+,,,,,,,"playerCamera.fChangeToSubCamera(gameObject.transform)","カメラをゴール前に移動する"
+,,,,,,,"isClearedScore = true","IsClearedScoreのflgをtrueにする"
+,,,,,,,"}else if (floorFlg == RIGHT) {",
+,,,,,,,"StartCoroutine (""fTurnRightPlayer"")","FloofFlgがrightなら  fTurnRightPlayer()を呼ぶ"
+,,,,,,,"} else if (floorFlg == LEFT) {",
+,,,,,,,"StartCoroutine (""fTurnLeftPlayer"")","FloorFlgがleftなら ｆTrunLeftPlayer()を呼ぶ"
+,,,,,,,"}else if (frontFlg == BLOCK && upFlg == BLOCK) {","frontFlgはblock以外（rightなど）でもここに来ないとまずいのでは？"
+,,,,,,,"StartCoroutine(""fTroublePlayer"")","FrontFlgがBlockかつupFlgがBlockなら fTroublePlayerを呼ぶ"
+,,,,,,,"}else if (frontFlg == BLOCK) {",
+,,,,,,,"StartCoroutine (""fClimbPlayer"")","FrontFlgがblockなら fClimbPlayer()を呼ぶ"
+,,,,,,,"}else if (floorFlg == NONE) {",
+,,,,,,,"StartCoroutine(""fFallPlayer"")","FloorFlgがNONEなら fFallPlayer()を呼ぶ"
+,,,,,,,"}else if (floorFlg == SPLING) {",
+,,,,,,,"StartCoroutine (""fSpling1Player"")","FloorFlgがsplingなら fSpling1Player()を呼ぶ"
+,,,,,,,"}else if (downFlg == NONE) {","前方下段のブロックがなければ降りる"
+,,,,,,,"StartCoroutine (""fDownPlayer"")","DownFlgがNONEなら fDownPlayer()を呼ぶ"
+,,,,,,,"}else if (frontFlg== NONE)",
+,,,,,,,"StartCoroutine (""fWalkPlayer"")","frontFlgがNONEならfWalkPlayer()を呼ぶ"
+,,,,,,"▼","}",
+,,,,,,,"}",
+,,,,,,,,
+,,,,,,"fWalkPlayer",,
+,,,,,,,"methodName = ""fWalkPlayer""","Debugメッセージ用にメソッド名を格納"
+,,,,,,"▲","for (int i = 0 i < (int)(1.0f / speed) i++){","合計1進むため、1回の移動量で割った回数分繰り返す"
+,,,,,,,"transform.Translate (0, 0, speed)","Playerを前方向へspeed分移動"
+,,,,,,,"yield return new WaitForSeconds (0.01F)",
+,,,,,,"▼","}",
+,,,,,,,"transform.Translate (0, 0, 1.0f - (int)(1.0f / speed) * speed)","端数を移動"
+,,,,,,,"fNextMove ()","fNextMove()へ戻る"
+,,,,,,,"}",
+,,,,,,,,
+,,,,,,"fTurnRightPlayer",,
+,,,,,,,"methodName = ""fTurnRightPlayer""","Debugメッセージ用にメソッド名を格納"
+,,,,,,,"transform.Rotate (0, 90, 0)","90度右へ回転"
+,,,,,,,"floorFlg=CHECKOUT;","真下のブロックのflgをcheckoutへ"
+,,,,,,,"fNextMove()","fNextMove()へ戻る"
+,,,,,,,"}",
+,,,,,,,,
+,,,,,,"fTurnLeftPlayer",,
+,,,,,,,"methodName = ""fTurnLeftPlayer""","Debugメッセージ用にメソッド名を格納"
+,,,,,,,"transform.Rotate (0, -90, 0)","90度左へ回転"
+,,,,,,,"floorFlg= BLOCK","真下のブロックのflgをcheckoutへ"
+,,,,,,,"fNextMove ()","fNextMove()へ戻る"
+,,,,,,,"}",
+,,,,,,,,
+,,,,,,"fDownPlayer",,
+,,,,,,,"methodName = ""fDownPlayer""","Debugメッセージ用にメソッド名を格納"
+,,,,,,,"anim.SetTrigger (""isJumpTrigger"")","飛び降りアクション"
+,,,,,,,"float speed3 = 0.04f","直打ち速度指定。これ変えられるか？"
+,,,,,,,"float deltaDistZ = 0",
+,,,,,,,"float deltaDistY = 0",
+,,,,,,"▲","for (int i = 0 i < 20 i++)",
+,,,,,,,"transform.Translate (0, 0, speed3)","20countの間前方へspeed3ずつ移動"
+,,,,,,,"deltaDistZ += speed3","前方への累計移動量を保存"
+,,,,,,,"yield return new WaitForSeconds (0.01F)",
+,,,,,,"▼","}",
+,,,,,,,"float speed2 = 0.05F","直打ち速度指定。これ変えられるか？"
+,,,,,,"▲","for (int i = 0 i < (int)(1.0f / speed2) i++) {",
+,,,,,,,"transform.Translate (0, - speed2, speed3/5.0f)","1/speed2（実質20count）の間下方へspeed2前方へspeed3/5ずつ移動"
+,,,,,,,"yield return new WaitForSeconds (0.01F)",
+,,,,,,,"deltaDistZ += speed3/5.0f","前方への累計移動量を保存"
+,,,,,,,"deltaDistY += speed2","下方への累計移動量を保存"
+,,,,,,"▼","}",
+,,,,,,,"transform.Translate (0, -(1.0f - deltaDistY), 1 - deltaDistZ)","到着ポイントを整数値へ補完"
+,,,,,,,"if (floorFlg != NONE) {","もし真下にブロックがなければ"
+,,,,,,,"yield return new WaitForSeconds (0.5f)","0.5fだけ待つ"
+,,,,,,,"}",
+,,,,,,,"StartCoroutine (""fFallGameOverChk"")","fFallGameOverChk()を呼ぶ"
+,,,,,,,"yield return new WaitForSeconds (0.5F)","着地モーション用ウェイト"
+,,,,,,,"anim.SetTrigger (""isMoveTrigger"")","歩きモーションスタート"
+,,,,,,,"fNextMove ()","fNextMove()へ戻る"
+,,,,,,,"}",
+,,,,,,,,
+,,,,,,"ｆClimbPlayer",,
+,,,,,,,"methodName = ""fClimbPlayer""","Debugメッセージ用にメソッド名を格納"
+,,,,,,,"anim.SetTrigger (""isMoveTrigger"")","とりあえず歩きモーションスタート。必要？"
+,,,,,,,"float dist = 0.2F","登リモーションに入るまでの前進移動"
+,,,,,,,"float sumDist = 0","累計前進距離"
+,,,,,,,"for (int i = 0 i < (int)(dist / speed) i++){",
+,,,,,,,"transform.Translate (0, 0, speed)","登る直前まで前進"
+,,,,,,,"sumDist += speed","累計前進距離"
+,,,,,,,"yield return new WaitForSeconds (0.01F)",
+,,,,,,,"}",
+,,,,,,,"transform.Translate (0, 0,  ( (dist / speed) - (int)( dist / speed)) * speed )","端数調整。Dist-sumDistではだめ？"
+,,,,,,,"sumDist += ((dist / speed) - (int)(dist / speed)) * speed","累計前進距離更新"
+,,,,,,,"anim.SetTrigger (""isClimbTrigger"")","登リモーションスタート"
+,,,,,,,"yield return new WaitForSeconds (0.5F)",
+,,,,,,,"float speed2 = 0.1F","直打ち速度指定。これ変えられるか？"
+,,,,,,,"for (int i = 0 i < (int)1 / speed2 i++) {",
+,,,,,,,"transform.Translate (0, speed2, 0)","1/speed2（実質10count）の間、speed2ずつ上方へ移動"
+,,,,,,,"yield return new WaitForSeconds (0.01F)",
+,,,,,,,"}",
+,,,,,,,"anim.SetTrigger (""isMoveTrigger"")","歩きモーションスタート"
+,,,,,,,"for (int i = 0 i < (int)((1- dist) / speed) i++) {",
+,,,,,,,"transform.Translate (0, 0, speed)","残りの距離を通常速度で移動"
+,,,,,,,"sumDist += speed","累計前進距離"
+,,,,,,,"yield return new WaitForSeconds (0.01F)",
+,,,,,,,"}",
+,,,,,,,"transform.Translate (0, 0, ((1 - dist) - ((int)((1 - dist) / speed)) * speed))","端数調整。1-sumDistではいかんのか？"
+,,,,,,,"sumDist += ((1 - dist) - ((int)((1 - dist) / speed)) * speed) * speed","累計前進距離。ここ不要では？"
+,,,,,,,"fNextMove ()","fNextMove()へ戻る"
+,,,,,,,"}",
+,,,,,,,,
+,,,,,,"fTroublePlayer",,
+,,,,,,,"methodName = ""fTroublePlayer""","Debugメッセージ用にメソッド名を格納"
+,,,,,,,"anim.SetBool (""isRun"", false)","走りモーションをOFF"
+,,,,,,,"anim.SetBool (""isTrouble"", true)","頭抱えモーションをON"
+,,,,,,,"float timeUp = 0","爆弾で突破口を見出すまでのカウント用"
+,,,,,,"■　","while(frontFlg == BLOCK && upFlg == BLOCK)",
+,,,,,,,"yield return new WaitForSeconds (0.1F)",
+,,,,,,,"timeUp += 0.1F",
+,,,,,,"▲","if (timeUp > 3)","3秒以上解決できない状態が続いたら"
+,,,,,,,"fPeePlayer()","fPeePlayer()を呼ぶ"
+,,,,,,"▼","}","Pee以外に変更しよう"
+,,,,,,"■　","}",
+,,,,,,,"}",
+,,,,,,,,
+,,,,,,"fPeePlayer",,
+,,,,,,,"Application.LoadLevel (""GameOver"")","GameOverへScene移動"
+,,,,,,,"}",
+,,,,,,,,
+,,,,,,"fGoalPlayer",,
+,,,,,,,"methodName = ""fGoalPlayer""","Debugメッセージ用にメソッド名を格納"
+,,,,,,,"goalEffect.SetActive (true)","GoalEffectをON"
+,,,,,,,"anim.SetTrigger (""isWinTrigger"")","勝利モーションをON"
+,,,,,,,"yield return new WaitForSeconds (0.01F)",
+,,,,,,,"}",
+,,,,,,,,
+,,,,,,"fSpling1Player",,"数字の1が混じってるのは消しておこう"
+,,,,,,,"methodName=”fSpling1Player”","Debugメッセージ用にメソッド名を格納"
+,,,,,,,"anim.SetTrigger (""isJumpTrigger"")","ジャンプモーションスタート"
+,,,,,,,"testCnt++","testCnt逓増。これ必要なのか？"
+,,,,,,,"float dist = 0","距離調整用"
+,,,,,,,"int count = ((int)(1.0f / 0.02f)-2)/2","カウント計算。全部定数ならここで計算いらなくないか？"
+,,,,,,"■","for (int i = 0 i < count i++) {",
+,,,,,,,"yield return new WaitForSeconds(0.01f)",
+,,,,,,,"transform.Translate(0,0,2.0f/count/2.0f)","前方移動１マス目"
+,,,,,,,"dist += 2.0f/count/2.0f","累計前進距離"
+,,,,,,"■","}",
+,,,,,,"■","for (int i = 0 i < count i++) {",
+,,,,,,,"yield return new WaitForSeconds(0.01f)",
+,,,,,,,"transform.Translate(0,0,2.0f/count/2.0f)","前方移動2マス目"
+,,,,,,,"dist += 2.0f/count/2.0f","累計前進距離"
+,,,,,,"■","}",
+,,,,,,"▲　","if (floorFlg == NONE) {","真下にブロックがなければ"
+,,,,,,,"float t = 0f","累計落下距離。Yのほうがわかりやすいのでは？"
+,,,,,,,"float dt = 0.15f","落下距離"
+,,,,,,,"anim.SetTrigger(""isSlipTrigger"")","スリップモーションスタート"
+,,,,,,"■","while (t<1.0f) {",
+,,,,,,,"transform.Translate (0, -dt, 0)","Dtずつ下へ移動"
+,,,,,,,"t += dt","累計落下距離"
+,,,,,,,"yield return new WaitForSeconds (0.01f)",
+,,,,,,"■","}",
+,,,,,,,"yield return new WaitForSeconds(1.0f)","倒れウェイト"
+,,,,,,,"anim.SetTrigger (""isMoveTrigger"")","歩きモーションスタート"
+,,,,,,,"} else {","真下にブロックがあれば"
+,,,,,,,"yield return new WaitForSeconds(0.5f)","着地モーションウェイト"
+,,,,,,"▼　","}",
+,,,,,,,"fNextMove ()","fNextMove()へ戻る"
+,,,,,,,"}",
+,,,,,,,,
+,,,,,,"fFallPlayer",,
+,,,,,,,"if (isSelectDown == true) {",
+,,,,,,,"yield break","IsSelectDownがtrueならなにもせずfFallPlayerを抜ける"
+,,,,,,,"}",
+,,,,,,,"methodName = ""fFallPlayer""","Debugメッセージ用にメソッド名を格納"
+,,,,,,,"float t = 0f","累計落下距離。Yのほうがわかりやすいのでは？"
+,,,,,,,"float dt = 0.15f","落下距離"
+,,,,,,,"while (t<1.0f) {",
+,,,,,,,"transform.Translate(0,-dt,0)","Dtずつ下へ移動"
+,,,,,,,"t+=dt","累計落下距離"
+,,,,,,,"yield return new WaitForSeconds (0.01f)",
+,,,,,,,"}",
+,,,,,,,"yield return new WaitForSeconds (1.5f)",
+,,,,,,,"anim.SetTrigger (""isMoveTrigger"")","歩きモーションスタート"
+,,,,,,,"}","fFallGameOverChkの一部のため、最後にfNextMove()へは戻らない"
+,,,,,,,,
+,,,,,,"fFallGameOverChk",,
+,,,,,,,"GetComponent<Rigidbody> ().useGravity = true","重力をON"
+,,,,,,,"GetComponent<BoxCollider> ().enabled = true","BoxColliderをON"
+,,,,,,,"int fallCnt = 0","FallCntを初期化"
+,,,,,,"■　","while (floorFlg == NONE) {","下にブロックが現れるまで"
+,,,,,,,"StartCoroutine(""fFallPlayer"")","FfallPlayerを呼び続ける"
+,,,,,,,"yield return new WaitForSeconds(0.05f)",
+,,,,,,,"fallCnt++","fallCnt++"
+,,,,,,"▲","if(fallCnt >5){","もし5回以上fFallPlayerが呼ばれたら"
+,,,,,,,"Application.LoadLevel(""GameOver"")","GameOverへシーン移動"
+,,,,,,"▼","}",
+,,,,,,"■　","}",
+,,,,,,"▲","if(fallCnt >0){","FallCntが1でも増えたのなら"
+,,,,,,,"yield return new WaitForSeconds(0.5f)",
+,,,,,,,"Application.LoadLevel(""GameOver"")","GameOverへシーン移動"
+,,,,,,"▼","}","上にあるfallCnt>5とかぶっている？"
+,,,,,,,"GetComponent<Rigidbody> ().useGravity = false","重力OFF"
+,,,,,,,"GetComponent<BoxCollider> ().enabled = false","BoxColliderOFF"
+,,,,,,,"}",
+,,,,,,,,
+,,,,,,"fSendCountStart",,
+,,,,,,,"radicaltimer.fStartCount()","radicaltimer.fStartCount()を呼ぶ"
+,,,,,,,,
+,,,,,,"testFreeze",,
+,,,,,,,,"削除予定"
+,,,,,,,,
+,,,,,,"fAvoidBlock(GameObject objectC)",,
